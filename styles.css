@@ -11,10 +11,8 @@
         Distances (border, padding, etc.): top, right, bottom, left.
 */
 
-h2 {
-    padding: 10px 40px 5 100px;
-    margin: 0;
-	text-align: center;
+header {
+    text-align: center;
 }
 
 body {
@@ -23,7 +21,12 @@ body {
     background-color: white;
 }
 
-.footer {
+#bodyContent {
+	text-align: center;
+	background-color: #cccccc;
+}
+
+footer {
     position: fixed;
     left: 0;
     bottom: 0;
