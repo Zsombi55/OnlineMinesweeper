@@ -1,0 +1,64 @@
+
+<!-- Selected as a personal project as well as possible FTIT final project. 
+		This is a web based Minesweeper clone.
+	So far I have decided to use only: HTML, CSS and Java Script.
+	IF, for some reason it becomes necessary or required, I will use others too. -->
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>Online Minesweeper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<header>
+	<div id="headerContent">
+		<!-- Intro or just a header text ? -->
+		<h2>My Online Minesweeper Clone</h2>
+		<p>Made with: HTML, CSS and Java Script.</p>
+	</div>
+</header>
+
+<body>
+	<div id="bodyContent">
+		<div id="gamePage"> <!-- Visible & active. The called "Difficulty Page" turns it inactive & partially hidden. -->
+			<div id="difficultyBar">
+				<!-- "Difficulty" dropdown menu selector: easy, medium, hard, custom (opens: id = "difficultyPage"). -->
+				<p>difficultyBar</p>
+			</div>
+			
+			<div id="sessionControls">
+				<!-- "Leftover points" counter, "elapsed time" counter (min. & sec.; "mm:ss"), "new session" button. -->
+				<p>sessionControls</p>
+			</div>
+			
+			<div id="panelsBox">
+				<!-- The panels, min. size: 10 x 10. -->
+				<p>panelsBox</p>
+			</div>
+		</div>
+		
+		<div id="difficultyPage" style= "display: none;"> <!-- Only visible & active when called ! -->
+			<div id="inputSection">
+				<!-- Input: numbers x3: width & height (min. 10, max. ?? ), point/mine amount (min. 5, max. "W*H-1" ). -->
+				<p>inputSection</p>
+			</div>
+			
+			<div id="buttonsSection">
+				<!-- Button: accept, cancel. -->
+				<p>buttonsSection</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- JavaScript -->
+    <div>	<script src="functions.js"></script>	</div>
+</body>
+
+<footer>
+	<a href="https://github.com/Zsombi55/OnlineMinesweeper">Project Source.</a>
+</footer>
+
+</html>
