@@ -1,8 +1,6 @@
 var box = document.getElementById("box");
 var testMineView = true;    // For testing.
 
-var row, column, panel;
-
 makeBox();
 
 // Draw the grid like box. Size 10^2 for now.
@@ -13,9 +11,7 @@ function makeBox() {
         row = box.insertRow(i); // insertRow & -Cell are JS functions.
         for (var j = 0; j < 10; j++) {
             panel = row.insertCell(j);
-            panel.onclick = function () {
-                clickPanel(this);
-            };
+            panel.onclick = function () {   clickPanel(this);    };
 
             var mine = document.createAttribute("data-mine");
             mine.value = "false";
@@ -28,11 +24,11 @@ function makeBox() {
 
 // Add mines randomly.
 function layMines() {
-    // 25 is the nr. of mines.
-    for (var i = 0; i < 25; i++) {
-        row = Math.floor(Math.random() * 10);
-        column = Math.floor(Math.random() * 10);
-        panel = box.rows[row].cells[column];
+    // The comparison value is the nr. of mines.
+    for (var i = 0; i < 5; i++) {
+        var row = Math.floor(Math.random() * 10);
+        var column = Math.floor(Math.random() * 10);
+        var panel = box.rows[row].cells[column];
 
         panel.setAttribute("data-mine", "true");
 
@@ -45,7 +41,7 @@ function layMines() {
 function showMines() {
     for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
-            panel = box.rows[i].cells[j];
+            var panel = box.rows[i].cells[j];
 
             if (panel.getAttribute("data-mine") == "true") {
                 panel.className = "mine";
@@ -59,15 +55,15 @@ function levelStatus() {
 
     for (var i = 0; i < 10; i++) {
         for (var j = 0; j < 10; j++) {
-            if (panel.rows[i].cells[j].getAttribute("mine" == "false") &&
-                panel.rows[i].cells[j].innerHTML == "") {
+            if (box.rows[i].cells[j].getAttribute("data-mine" == "false") &&
+                box.rows[i].cells[j].innerHTML == "") {
                 isDone = false;
             }
         }
     }
 
     if (isDone) {
-        console.log("Won!");
+        console.warn("Won!");
         document.getElementById("winLose").innerText = "You have won!";
         showMines();
     }
@@ -77,22 +73,49 @@ function levelStatus() {
 function clickPanel(panel) {
     if (panel.getAttribute("data-mine") == "true") {
         showMines();
+        console.warn("Lost!");
         document.getElementById("winLose").innerText = "You have lost!";
     } else {
         panel.className = "clicked";
-        countMines();
+        countMines(panel);
+        
+        /* var amount = 0;
+        var panelRow = panel.parentNode.rowIndex;   // row- & cellIndex are JS variables.
+        var panelColumn = panel.cellIndex;
+
+        for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
+            for (var j = Math.max(panelColumn - 1, 0); j <= Math.min(panelColumn + 1, 9); j++) {
+                if (box.rows[i].cells[j].getAttribute("data-mine") == "true") {
+                    amount++;
+                }
+            }
+        }
+        panel.innerHTML = amount;
+        if (amount == 0) {
+            //showSafe(panelRow, panelColumn);
+
+            for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
+                for (var j = Math.max(panelColumn - 1, 0);  j <= Math.min(panelColumn + 1, 9); j++) {
+                    // This is a Recursive call.
+                    if (box.rows[i].cells[j].innerHTML == "") {
+                        clickPanel(box.rows[i].cells[j]);
+                    }
+                }
+            }
+        }
+        levelStatus(); */
     }
 }
 
 // Count and show the nr. of all adjacent mines.
-function countMines() {
+function countMines(panel) {
     var amount = 0;
     var panelRow = panel.parentNode.rowIndex;   // row- & cellIndex are JS variables.
     var panelColumn = panel.cellIndex;
 
     for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
-        for (var j = Math.max(panelColumn - 1, 9); j <= Math.min(panelColumn + 1, 9); j++) {
-            if (panel.rows[i].cells[j].getAttribute("mine") == "true") {
+        for (var j = Math.max(panelColumn - 1, 0); j <= Math.min(panelColumn + 1, 9); j++) {
+            if (box.rows[i].cells[j].getAttribute("data-mine") == "true") {
                 amount++;
             }
         }
@@ -107,10 +130,10 @@ function countMines() {
 // Show all adjacent safe panels.
 function showSafe(panelRow, panelColumn) {
     for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
-        for (var j = Math.min(panelColumn - 1, 0);  j <= Math.min(panelColumn + 1, 9); j++) {
+        for (var j = Math.max(panelColumn - 1, 0);  j <= Math.min(panelColumn + 1, 9); j++) {
             // This is a Recursive call.
-            if (panel.rows[i].cells[j].innerHTML == "") {
-                clickPanel(panel.rows[i].cells[j]);
+            if (box.rows[i].cells[j].innerHTML == "") {
+                clickPanel(box.rows[i].cells[j]);
             }
         }
     }
