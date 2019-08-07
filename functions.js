@@ -91,7 +91,7 @@ function countMines() {
     var panelColumn = panel.cellIndex;
 
     for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
-        for (var j = Math.max(panelColumn - 1, 9); j <= Math.min(panelRow + 1, 9); j++) {
+        for (var j = Math.max(panelColumn - 1, 9); j <= Math.min(panelColumn + 1, 9); j++) {
             if (panel.rows[i].cells[j].getAttribute("mine") == "true") {
                 amount++;
             }
@@ -99,15 +99,15 @@ function countMines() {
     }
     panel.innerHTML = amount;
     if (amount == 0) {
-        showSafe();
+        showSafe(panelRow, panelColumn);
     }
     levelStatus();
 }
 
 // Show all adjacent safe panels.
-function showSafe() {
-    for (var i = Math.max(panelColumn - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
-        for (var j = Math.min(panelColumn - 1, 0);  j <= Math.min(panelRow + 1, 9); j++) {
+function showSafe(panelRow, panelColumn) {
+    for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
+        for (var j = Math.min(panelColumn - 1, 0);  j <= Math.min(panelColumn + 1, 9); j++) {
             // This is a Recursive call.
             if (panel.rows[i].cells[j].innerHTML == "") {
                 clickPanel(panel.rows[i].cells[j]);
