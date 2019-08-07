@@ -1,14 +1,20 @@
 
 /*  selector    {   sub-attribute: value  }
-        p    {   color: red;  }     .. every instce of the sspecific tag.
-        #id_ {   color: red;  }     .. the object with the specific ID.
-        .class {   color: red;  }   .. all objects with the specific class.
+      p    {   color: red;  }     .. every instce of the sspecific tag.
+      #id_ {   color: red;  }     .. the object with the specific ID.
+      .class {   color: red;  }   .. all objects with the specific class.
 
-        hexadecimal color coding   .. 0 -> 9 -> A -> F .
-        color: #000         .. basic    .. red, green, blue, etc.
-        color: #000+ max x8 .. expanded .. shades and mixes of all variety.
+      hexadecimal color coding   .. 0 -> 9 -> A -> F .
+      color: #000         .. basic    .. red, green, blue, etc.
+      color: #000+ max x8 .. expanded .. shades and mixes of all variety.
 
-        Distances (border, padding, etc.): top, right, bottom, left.
+      Distances (border, padding, etc.): top, right, bottom, left.
+		    "Ems" (em) .. scalble unit relative to associated object (usually font) size.
+        1em = 100%, eg.: IF font size is 12px AND font padding size is 1em THEN padding size = 12px.
+        1% = compared to the parent element's size cap.
+        1vw / 1vh = relative to the "current" view port (browser content area) heigth / width.
+	
+	  "a:hover" MUST come after "a:link" while "a:visited" & "a:active" MUST come after "a:hover"
 */
 
 header {
@@ -19,11 +25,37 @@ body {
     padding-bottom: 35px;
     margin: 0;
     background-color: white;
+    text-align: center;
 }
 
 #bodyContent {
 	text-align: center;
 	background-color: #cccccc;
+}
+
+#box {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#box tr td{
+    border:1px solid white;
+    background: #999999;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+}
+  
+#box tr td.clicked {
+    background: #333333;
+}
+  
+#box tr td.mine {
+    background: #FF0000;
+}
+  
+button {
+    margin: 12px;
 }
 
 footer {

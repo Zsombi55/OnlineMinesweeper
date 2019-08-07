@@ -1,6 +1,5 @@
 
-<!-- Selected as a personal project as well as possible FTIT final project. 
-		This is a web based Minesweeper clone.
+<!-- This is a web based Minesweeper clone.
 	So far I have decided to use only: HTML, CSS and Java Script.
 	IF, for some reason it becomes necessary or required, I will use others too. -->
 
@@ -16,8 +15,8 @@
 <header>
 	<div id="headerContent">
 		<!-- Intro or just a header text ? -->
-		<h2>My Online Minesweeper Clone</h2>
-		<p>Made with: HTML, CSS and Java Script.</p>
+		<h2>Online Minesweeper Clone</h2>
+		<p>Made primarily with: HTML, CSS and Java Script.</p>
 	</div>
 </header>
 
@@ -31,18 +30,18 @@
 			
 			<div id="sessionControls">
 				<!-- "Leftover points" counter, "elapsed time" counter (min. & sec.; "mm:ss"), "new session" button. -->
-				<p>sessionControls</p>
+				<button id="newBtn" onclick="makeBox();">New</button>> <!--TODO: add smiley code, based on game status & onclick event.-->
 			</div>
 			
 			<div id="panelsBox">
 				<!-- The panels, min. size: 10 x 10. -->
-				<p>panelsBox</p>
+				<table id="box"></table> <!--Generated content.-->
 			</div>
 		</div>
 		
 		<div id="difficultyPage" style= "display: none;"> <!-- Only visible & active when called ! -->
 			<div id="inputSection">
-				<!-- Input: numbers x3: width & height (min. 10, max. ?? ), point/mine amount (min. 5, max. "W*H-1" ). -->
+				<!-- Input: numbers x3: width & height (10^2 ~ 100^2 ? ), point/mine amount (5 ~ "W*H-5" ? ). -->
 				<p>inputSection</p>
 			</div>
 			
