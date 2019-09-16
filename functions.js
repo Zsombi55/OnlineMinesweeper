@@ -25,7 +25,7 @@ function makeBox() {
 // Add mines randomly.
 function layMines() {
     // The comparison value is the nr. of mines.
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 15; i++) {
         var row = Math.floor(Math.random() * 10);
         var column = Math.floor(Math.random() * 10);
         var panel = box.rows[row].cells[column];
@@ -79,7 +79,8 @@ function clickPanel(panel) {
         panel.className = "clicked";
         countMines(panel);
         
-        /* var amount = 0;
+        // Count and show the nr. of all adjacent mines.
+        var amount = 0;
         var panelRow = panel.parentNode.rowIndex;   // row- & cellIndex are JS variables.
         var panelColumn = panel.cellIndex;
 
@@ -92,8 +93,7 @@ function clickPanel(panel) {
         }
         panel.innerHTML = amount;
         if (amount == 0) {
-            //showSafe(panelRow, panelColumn);
-
+            // Show all adjacent safe panels.
             for (var i = Math.max(panelRow - 1, 0); i <= Math.min(panelRow + 1, 9); i++) {
                 for (var j = Math.max(panelColumn - 1, 0);  j <= Math.min(panelColumn + 1, 9); j++) {
                     // This is a Recursive call.
@@ -103,10 +103,11 @@ function clickPanel(panel) {
                 }
             }
         }
-        levelStatus(); */
+        levelStatus();
     }
 }
 
+/*
 // Count and show the nr. of all adjacent mines.
 function countMines(panel) {
     var amount = 0;
@@ -137,4 +138,4 @@ function showSafe(panelRow, panelColumn) {
             }
         }
     }
-}
+} */
